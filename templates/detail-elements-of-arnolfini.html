@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detail Elements of Arnolfini</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  .interactive-image {
+    position: relative;
+    display: inline-block; /* Allows us to position elements relative to the image */
+  }
+
+  .info-button {
+    position: absolute;
+    width: 20px; /* Size of the button */
+    height: 20px;
+    background-color: red;
+    border-radius: 50%; /* Makes it a circle */
+    cursor: pointer;
+  }
+
+  /* Custom popup style */
+  .popup {
+    display: none;
+    position: absolute;
+    border: 1px solid #333;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Symbolism</a>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Go to Homepage</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container content my-5 py-5">
+  <h1>Let’s look at the detail elements of "Portrait of Giovanni Arnolfini and his Wife"</h1>
+  <p>(Click on the elements within the photo!)</p>
+
+
+<div class="interactive-image">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Van_Eyck_-_Arnolfini_Portrait.jpg" style="width: 400px;" alt="Portrait of Giovanni Arnolfini and his Wife">
+
+    <!-- Position your buttons according to the image's dimensions -->
+    <!-- The 'top' and 'left' styles will change based on your image's size and where you want the buttons -->
+    <div class="info-button" style="top: 10%; left: 20%;" onclick="showPopup(this, 'The convex mirror in the painting\'s background reflects two figures, likely witnesses to the Arnolfini\'s marriage, and is surrounded by scenes of Christ\'s Passion, hinting at salvation and divine presence.')"></div>
+    <!-- Add more buttons as needed -->
+
+</div>
+  <!-- Include your image with clickable regions here -->
+  <div class="mt-5">
+    <a href="/portrait-of-giovanni-arnolfini-and-his-wife" class="btn btn-secondary" id="arnolfini-detail-button">Previous</a>
+    <!-- The Next button would go to a different page, update the href accordingly -->
+    <a href="/quiz1" id="quiz1button" class="btn btn-primary">Quizzes</a>
+
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script>
+  function showPopup(button, infoText) {
+    // Close any existing popups
+    $('.popup').remove();
+
+    // Create a new popup
+    var popup = $('<div class="popup"></div>');
+
+    // Set the text for the popup
+    popup.text(infoText);
+
+    // Place the popup near the button
+    popup.css({
+      top: $(button).position().top + 20, // Position below the button
+      left: $(button).position().left // Align with the button
+    });
+
+    // Add the popup to the page
+    $(button).after(popup);
+
+    // Show the popup
+    popup.show();
+  }
+
+  // Hide popup when clicking anywhere on the page
+  $(document).on('click', function (e) {
+    if (!$(e.target).hasClass('info-button')) {
+      $('.popup').remove();
+    }
+  });
+</script>
+
+</body>
+</html>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="static/scripts.js"></script>
+</body>
+</html>

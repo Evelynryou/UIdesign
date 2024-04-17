@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz on Symbolism</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  /* Style for the hint popup */
+  .hint-popup {
+    display: none;
+    position: absolute;
+    background-color: #ffc;
+    border: 1px solid #cc9;
+    padding: 5px;
+    border-radius: 5px;
+    width: 200px;
+    top: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+  }
+  /* Style for clickable elements */
+  .clickable {
+    cursor: pointer;
+    border-bottom: 1px dashed #000; /* Change dashed line to your preference */
+    position: absolute; /* Set position to absolute for proper placement */
+  }
+  /* Style for number text */
+  .number {
+    font-size: 12px; /* Adjust font size as needed */
+    color: #000; /* Set color for number */
+    background-color: #fff; /* Set background color for number */
+    padding: 3px; /* Adjust padding as needed */
+    border-radius: 50%; /* Make the number circle */
+    position: absolute; /* Set position to absolute for proper placement */
+    z-index: 1; /* Ensure numbers are above the image */
+  }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Symbolism</a>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Go to Homepage</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container my-5">
+  <h1>Symbolism Quiz 3</h1>
+  <div id="question">
+    <p>Which element in the painting symbolizes the presence of the Holy Spirit or the watchful eye of God?</p>
+    <div id="image" style="position: relative;"> <!-- Set position to relative for proper placement of areas -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Van_Eyck_-_Arnolfini_Portrait.jpg" alt="Painting" style="width: 400px" #image-map">
+
+      <map name="image-map">
+        <!-- Adjust coords and position for each area -->
+        <area shape="rect" coords="0,0,50,50" class="clickable" data-meaning="A" style="top: 10px; left: 10px;">
+        <area shape="rect" coords="50,0,100,50" class="clickable" data-meaning="B" style="top: 10px; left: 60px;">
+        <area shape="rect" coords="0,50,50,100" class="clickable" data-meaning="C" style="top: 60px; left: 10px;">
+        <area shape="rect" coords="50,50,100,100" class="clickable" data-meaning="D" style="top: 60px; left: 60px;">
+      </map>
+      <!-- Numbering for each area -->
+      <div class="number" style="top: 5px; left: 5px;">1</div>
+      <div class="number" style="top: 5px; left: 55px;">2</div>
+      <div class="number" style="top: 55px; left: 5px;">3</div>
+      <div class="number" style="top: 55px; left: 55px;">4</div>
+    </div>
+    <div id="feedback"></div>
+  </div>
+
+  <a href="/quiz2" class="btn btn-secondary" id="quiz2button">Previous</a>
+  <a href="/quiz4" id="quiz4button" class="btn btn-primary">Next</a>
+  <div class="hint-popup" id="hint">Hint: Who else could be in the room, even if not directly visible?</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script>
+$(document).ready(function() {
+  // Handle click on clickable elements
+  $('.clickable').click(function() {
+    var meaning = $(this).data('meaning');
+    $('#feedback').html('You clicked on element ' + meaning);
+    // You can add more logic here to check the correctness of the answer if needed
+  });
+});
+</script>
+</body>
+</html>
