@@ -7,44 +7,78 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- Separate CSS file for styles -->
-<link rel="stylesheet" href="static/styles.css">
+<link rel="stylesheet" href="../static/styles.css">
+<style>
+  #animated-image {
+    width: 100%; /* Adjust based on your layout */
+    height: auto;
+}
+  #question-mark {
+    color: #e02a2a; /* Adjust color as needed */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.13s ease, font-size 0.13s ease; /* Smooth transition for appearance and growth */
+    font-size: 1rem; /* Start smaller */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center over the image */
+  }
+
+
+
+</style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">Symbolism</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">go to homepage</a>
-        </li>
-      </ul>
+    <a class="navbar-brand" href="/">Symbolism</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-link active1" href="/detail-elements-of-arnolfini">Learn again</a>
+        <a class="nav-link active2" href="/">Home</a>
+      </div>
     </div>
   </div>
 </nav>
 
+
 <div class="container content my-5 py-5">
-  <h1>What is Symbolism?</h1>
-  <p class="mt-4">Symbolism uses symbols in art and literature to suggest deeper meanings, beyond direct depiction.</p>
+  <h1>What is <b>Symbolism</b>?</h1>
+  <h4 class="mt-4"><b>Symbolism</b> uses symbols in art and literature to suggest deeper meanings, beyond direct depiction.</h4>
   <div class="row mt-5">
     <div class="col-lg-12 text-center">
-      <!-- Previous button will link back to index.html -->
-      <a href="/" class="btn btn-secondary mr-2" id="home-button">Previous</a>
-      <!-- Next button will link to the arnolfini.html page, assuming that's the next content section -->
-      <a href="/next" class="btn btn-primary ml-2" id="next-button">OK!</a>
+      <div class="image-container text-center mt-4">
+        <img src="https://www.theartstory.org/images20/hero/profile/van_eyck_jan_525.jpg" alt="Descriptive Text of Image" id="animated-image" style="width: 50%; position: relative;">
+        <div id="question-mark" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 50rem;">?</div>
+    </div>
 
+      <!-- Previous and Next buttons aligned using Bootstrap utility classes -->
+      <div class="d-flex justify-content-between mt-4">
+        <a href="/" class="btn btn-secondary" id="home-button">Previous</a>
+        <a href="/next" class="btn btn-primary" id="next-button">OK!</a>
+      </div>
     </div>
   </div>
 </div>
+
 
 <!-- JQuery and Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <!-- Separate JS file for scripts -->
-<script src="../static/scripts.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const image = document.getElementById('animated-image');
+    const questionMark = document.getElementById('question-mark');
+
+    image.addEventListener('mouseover', function() {
+        questionMark.style.opacity = 1; // Make the question mark visible
+        questionMark.style.fontSize = '20rem'; // Increase font size to desired size
+    });
+});
+
+</script>
+
 </body>
 </html>

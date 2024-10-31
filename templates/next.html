@@ -1,50 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Further Into Symbolism</title>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- Separate CSS file for styles -->
-<link rel="stylesheet" href="static/styles.css">
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Further Into Symbolism</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles.css">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+</head>
+<style>
+    .image-container {
+        position: relative;
+        width: 70%; /* Keeps image container width at 30% */
+        margin: auto; /* Centering the container */
+    }
+    #click-overlay {
+        position: absolute;
+        bottom: 3%; /* Align bottom edge to the bottom of the image */
+        left: 50%; /* Start from the middle */
+        transform: translateX(-50%); /* Center horizontally */
+        width: 20%; /* Even smaller width for the button */
+        height: 15%; /* Smaller height for the button */
+        background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white overlay */
+        color: black; /* Text color */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer; /* Cursor changes to pointer on hover */
+        font-size: 1.2rem; /* Further reduced font size */
+        border-radius: 5px; /* Rounded corners */
+        border: 1px solid black; /* Solid border to outline the button */
+        padding: 5px 10px; /* Padding inside the button */
+    }
+
+    #dogModal .modal-dialog {
+        max-width: 400px; /* Reduces the maximum width of the modal */
+    }
+
+    .modal-content {
+        height: auto; /* Adjusts the height dynamically based on the content */
+    }
+
+
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">Symbolism</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.html">Go to Homepage</a>
-        </li>
-      </ul>
+    <a class="navbar-brand" href="/">Symbolism</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-link active1" href="/detail-elements-of-arnolfini">Learn again</a>
+        <a class="nav-link active2" href="/">Home</a>
+      </div>
     </div>
   </div>
 </nav>
 
-<div class="container content my-5 py-5">
-  <h1>Exploring Symbolism Further</h1>
-  <p class="mt-4">Dive deeper into the realm of symbolism, examining its presence in modern art and its evolution throughout history.</p>
-  <div class="row mt-5">
-    <div class="col-lg-12 text-center">
-      <!-- Link back to the symbolism.html as the previous content page -->
-      <a href="/symbolism" class="btn btn-secondary mr-2" id="symbolism-button">Previous</a>
+    <div class="container content my-5 py-5">
+        <h1>Exploring <b>Symbolism</b> Further</h1>
+        <h4 class="mt-4">Let’s study <b>symbolism</b> using Jan van Eyck’s “Portrait of Giovanni Arnolfini and his Wife." as an example.</h4>
+        <div class="row mt-5">
+            <div class="col-lg-12 text-center">
+                <div class="image-container">
+                    <img id="imageWithDog" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/The_Arnolfini_portrait_%281434%29.jpg/1280px-The_Arnolfini_portrait_%281434%29.jpg" style="width:60%;" alt="Historic Painting" usemap="#image-map">
+                    <div id="click-overlay" data-toggle="modal" data-target="#dogModal">Click Me!</div>
+                </div>
+                <map name="image-map">
+                    <area shape="rect" coords="52,463,468,625" href="#" alt="Dog">
+                </map>
 
-      <!-- Placeholder for the link to the next content page -->
-      <a href="/jan-van-eyck" class="btn btn-primary ml-2" id="jan-van-eyck-button">Next</a>
+                <!-- Modal Structure -->
+                <div class="modal fade" id="dogModal" tabindex="-1" role="dialog" aria-labelledby="dogModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="dogModalLabel">What does this dog mean in this artwork?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Jan_van_Eyck_009.jpg/1280px-Jan_van_Eyck_009.jpg" alt="Dog Close-up" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="/symbolism" class="btn btn-secondary" id="symbolism-button">Previous</a>
+                    <a href="/jan-van-eyck" class="btn btn-primary" id="jan-van-eyck-button">Next</a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- JQuery and Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<!-- Separate JS file for scripts -->
-<script src="static/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,294 @@
+ .interactive-image {
+    position: relative;
+    display: inline-block; /* Allows us to position elements relative to the image */
+    text-align: center;
+
+  }
+  .interactive-image img {
+  margin: 0 auto; /* 이미지를 가운데 정렬합니다 */
+  display: block; /* 이미지를 가운데 정렬합니다 */
+  }
+
+  .info-button {
+    position: absolute;
+    width: 20px; /* Size of the button */
+    height: 20px;
+    background-color: red;
+    border-radius: 50%; /* Makes it a circle */
+    cursor: pointer;
+  }
+ .info-button.blue {
+    background-color: blue;
+  }
+     /* Padding to avoid navbar overlap */
+
+
+  .popup-container {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed positioning relative to the viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the popup */
+    background-color: #fff;
+    padding: 50px; /* Increased padding */
+    border: 1px solid #333;
+    z-index: 1000; /* High z-index to ensure it is on top */
+    max-width: 600px; /* Increased maximum width */
+    border-radius: 10px; /* Increased border radius */
+  }
+
+  .popup-text {
+    font-size: 1.2em; /* Adjust the font size as necessary */
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000; /* Changed color to black for better visibility */
+  }
+
+  .close-btn:hover {
+    color: #555; /* Darker color on hover for better visibility */
+  }
+
+  .popup-image img {
+    max-width: 200px; /* Responsive image width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 4px;
+    margin: 25px;
+  }
+
+ body { padding-top: 60px; }
+  .quiz-container {
+    display: flex;
+    flex-direction: column; /* Stacks items in a vertical column */
+    justify-content: center; /* Center-aligns the container */
+    margin-top: 50px;
+  }
+  .row {
+    display: flex; /* Ensures that elements are aligned horizontally */
+    justify-content: center; /* Center-aligns the items */
+    width: 100%; /* Full width to spread across the screen */
+    margin-bottom: 30px; /* Adds space between rows */
+  }
+  .word-list, .image-list {
+    list-style: none;
+    padding: 0;
+  }
+  .word-list li, .image-list li {
+    margin: 10px; /* Provides spacing between items */
+    cursor: pointer;
+    text-align: center;
+  }
+  .word-list li {
+    border: 2px solid gray; /* Border for word boxes */
+    padding: 10px;
+    width: 100px; /* Fixed width for uniform size */
+  }
+  .image-list img {
+    width: 200px;
+    height: auto;
+  }
+  .droppable:hover {
+    border-color: blue;
+  }
+  .correct {
+    border-color: green;
+  }
+  .incorrect {
+    border-color: red;
+  }
+  #feedback-message, #score-display {
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  .hint-display {
+    display: none; /* Initially hidden */
+    background-color: #ffc;
+    border: 1px solid #cc9;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  #content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  #quiz-container {
+    width: 40%; /* Adjust based on your design */
+  }
+  #image-container {
+    width: 50%;
+    position: relative;
+  }
+  #image-container img {
+    width: 100%;
+    height: auto;
+  }
+  .overlay-arrow {
+    position: absolute;
+    top: 30%; /* Adjust based on actual required position */
+    left: 40%; /* Adjust based on actual required position */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 30px 30px 0 0;
+    border-color: red transparent transparent transparent;
+    transform: rotate(98deg); /* Rotate to point as necessary */
+  }
+  #feedback-area {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .hint-popup {
+    display: none; /* Initially hidden */
+    background-color: #ffc;
+    border: 1px solid #cc9;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  .number {
+    font-size: 20px;
+    color: #000;
+    background-color: #fff;
+    padding: 3px;
+    border-radius: 3%;
+    position: absolute;
+    z-index: 1;
+  }
+  #feedback-area {
+    margin-top: 20px;
+  }
+
+  .slider {
+  width: 500px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto; /* 중앙 정렬 */
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 100%; /* 초기 위치는 오른쪽 바깥쪽 */
+  transition: left 1s ease; /* 왼쪽으로 이동하는 속도와 효과 */
+}
+
+.slider .slide:first-child {
+  left: 0; /* 첫번째 이미지는 초기에 화면에 표시 */
+}
+ .navbar {
+
+  position: fixed; /* Keeps the navbar at the top */
+  top: 0; /* Aligns the navbar at the very top of the viewport */
+  width: 100%; /* Ensures the navbar spans the entire width of the viewport */
+  z-index: 1030; /* Keeps the navbar on top of other content */
+}
+.navbar-light.bg-light {
+    background-color: rgb(101, 70, 59) !important; /* Bootstrap의 기본 파란색 */
+}
+
+
+  /* 활성 링크 스타일 */
+  .nav-link.active1, .nav-link.active2 {
+    font-weight: bold; /* 글자 두껍게 */
+      /* Bootstrap의 기본 테마 색상으로 설정 */
+  }
+
+
+body, h1, h2, h3, h4, h5, p, a {
+  font-family: 'Times New Roman', Times, serif;
+}
+body {
+background-color: #faf8f5;
+  color: #573a29;
+  font-family: 'Times New Roman', serif;
+  line-height: 1.6;
+}
+
+
+.navbar-brand{
+    font-weight: bold;
+    font-size: 30px;
+    font-style: italic;
+    color: #ffffff !important; /* 하얀색 */
+
+}
+
+
+.jumbotron {
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.44);
+}
+
+.nav-link {
+  color: #5c483b !important; /* Ensure navigation links are the same deep brown */
+}
+
+body {
+  padding-top: 30px; /* Adjust based on the height of your navbar */
+}
+
+
+
+.btn-primary {
+  background-color: rgba(138, 217, 98, 0.65);
+  border-color: #4b3728;
+}
+
+.btn-secondary {
+  background-color: rgba(236, 121, 29, 0.6);
+  border-color: rgba(3, 1, 1, 0.47);
+}
+.btn-secondary1 {
+  background-color: rgb(187, 136, 236);
+  border-color: rgba(3, 1, 1, 0.47);
+}
+.btn-secondary:hover {
+  background-color: #c99050;
+  border-color: rgba(62, 44, 34, 0.85);
+}
+.btn-primary:hover {
+  background-color: #579b53;
+  border-color: rgba(62, 44, 34, 0.85);
+}
+
+/* Improve the slider's look */
+.correct-feedback {
+  color: green;
+}
+
+.incorrect-feedback {
+  color: red;
+}
+
+  .nav-link {
+    margin-right: 10px; /* 각 링크 사이에 공간 추가 */
+    padding: 8px 15px; /* 패딩으로 버튼 느낌 */
+    border-radius: 5px; /* 둥근 모서리 */
+    /* 부드러운 색 변화 효과 */
+  }
+
+  .nav-link:hover, .nav-link:focus {
+    background-color: #d2c5c5; /* 호버 및 포커스시 배경 색상 변경 */
+    color: #333; /* 호버 및 포커스시 글자 색상 변경 */
+  }
+.nav-link.active1,
+.nav-link.active2 {
+    color: #030101 !important; /* 하얀색 */
+    background-color: rgb(225, 224, 224); /* 배경 색상 */
+}
+
+
+

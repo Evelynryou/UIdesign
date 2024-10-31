@@ -23,6 +23,7 @@ def previous():
 def arnolfini():
     return render_template('arnolfini.html')
 
+
 # Route for the next page (next.html)
 @app.route('/next')
 def next():
@@ -74,6 +75,10 @@ def quiz7():
 @app.route('/quiz8')
 def quiz8():
     return render_template('quiz8.html')
+
+@app.route('/congrate')
+def congrate():
+    return render_template('congrate.html')
 
 if __name__ == '__main__':
     # Run the Flask app

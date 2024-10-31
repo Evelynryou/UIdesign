@@ -5,86 +5,102 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiz on Symbolism</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<style>
-  /* Style for the hint popup */
-  .hint-popup {
-    display: none;
-    position: absolute;
-    background-color: #ffc;
-    border: 1px solid #cc9;
-    padding: 5px;
-    border-radius: 5px;
-    width: 200px;
-    top: 20px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
-  }
-  /* Style for clickable elements */
-  .clickable {
-    cursor: pointer;
-    border-bottom: 1px dashed #000; /* Change dashed line to your preference */
-    position: absolute; /* Set position to absolute for proper placement */
-  }
-  /* Style for number text */
-  .number {
-    font-size: 12px; /* Adjust font size as needed */
-    color: #000; /* Set color for number */
-    background-color: #fff; /* Set background color for number */
-    padding: 3px; /* Adjust padding as needed */
-    border-radius: 50%; /* Make the number circle */
-    position: absolute; /* Set position to absolute for proper placement */
-    z-index: 1; /* Ensure numbers are above the image */
-  }
-</style>
+<link rel="stylesheet" href="../static/styles.css">
 </head>
+
+<style>
+ body {
+     padding-top: 70px;
+ }
+</style>
+
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">Symbolism</a>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">Go to Homepage</a>
-      </li>
-    </ul>
+    <a class="navbar-brand" href="/">Symbolism</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-link active1" href="/detail-elements-of-arnolfini">Learn again</a>
+        <a class="nav-link active2" href="/">Home</a>
+      </div>
+    </div>
   </div>
 </nav>
+
 <div class="container my-5">
-  <h1>Symbolism Quiz 3</h1>
-  <div id="question">
-    <p>Which element in the painting symbolizes the presence of the Holy Spirit or the watchful eye of God?</p>
-    <div id="image" style="position: relative;"> <!-- Set position to relative for proper placement of areas -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Van_Eyck_-_Arnolfini_Portrait.jpg" alt="Painting" style="width: 400px" #image-map">
-
-      <map name="image-map">
-        <!-- Adjust coords and position for each area -->
-        <area shape="rect" coords="0,0,50,50" class="clickable" data-meaning="A" style="top: 10px; left: 10px;">
-        <area shape="rect" coords="50,0,100,50" class="clickable" data-meaning="B" style="top: 10px; left: 60px;">
-        <area shape="rect" coords="0,50,50,100" class="clickable" data-meaning="C" style="top: 60px; left: 10px;">
-        <area shape="rect" coords="50,50,100,100" class="clickable" data-meaning="D" style="top: 60px; left: 60px;">
-      </map>
-      <!-- Numbering for each area -->
-      <div class="number" style="top: 5px; left: 5px;">1</div>
-      <div class="number" style="top: 5px; left: 55px;">2</div>
-      <div class="number" style="top: 55px; left: 5px;">3</div>
-      <div class="number" style="top: 55px; left: 55px;">4</div>
+  <div class="jumbotron mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>Quiz 3</h1>
+        <h4 style="margin-top: 30px">Which element in the painting symbolizes the presence of the Holy Spirit or the watchful eye of God?</h4>
+        <p>(Click on the elements in the painting that match the meaning!)</p>
+        <div id="feedback-area">
+          <p id="feedback-message"></p>
+          <button id="hint-button" class="btn btn-info" style="display:none;">Show Hint</button>
+          <div class="hint-popup"></div>
+        </div>
+      </div>
+      <div class="col-md-6" style="position: relative;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Van_Eyck_-_Arnolfini_Portrait.jpg" alt="Painting" style="width: 100%;">
+        <div class="number" data-correct="true" style="top: 10%; left: 30%;">A:The Single Lit Candle</div>
+        <div class="number" data-correct="false" style="top: 50%; left: 5%;">B:Fruits</div>
+        <div class="number" data-correct="false" style="top: 60%; left: 65%;">C:The Green Dress</div>
+        <div class="number" data-correct="false" style="top: 90%; left: 10%;">D:Shoes</div>
+      </div>
     </div>
-    <div id="feedback"></div>
   </div>
-
-  <a href="/quiz2" class="btn btn-secondary" id="quiz2button">Previous</a>
-  <a href="/quiz4" id="quiz4button" class="btn btn-primary">Next</a>
-  <div class="hint-popup" id="hint">Hint: Who else could be in the room, even if not directly visible?</div>
+  <div id="continue-message" class="alert alert-success" style="display: none;">Good job! You can proceed to the next quiz.</div>
+  <div class="d-flex justify-content-between mt-4">
+    <a href="/quiz2" class="btn btn-secondary" id="quiz2button">Previous</a>
+    <a href="/quiz4" id="quiz4button" class="btn btn-primary">Next</a>
+  </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-$(document).ready(function() {
-  // Handle click on clickable elements
-  $('.clickable').click(function() {
-    var meaning = $(this).data('meaning');
-    $('#feedback').html('You clicked on element ' + meaning);
-    // You can add more logic here to check the correctness of the answer if needed
-  });
+$(document).ready(function () {
+    let correctAnswerGiven = false; // Tracks whether the correct answer has been given
+
+    $('.number').click(function () {
+        var isCorrect = $(this).data('correct');
+        var feedbackMessage = $('#feedback-message');
+        feedbackMessage.removeClass('correct-feedback incorrect-feedback'); // Remove previous classes
+
+        if (isCorrect) {
+            correctAnswerGiven = true; // Set to true when the correct answer is given
+            feedbackMessage.addClass('correct-feedback').text('Correct!');
+            $('#hint-button').hide();
+            $('.hint-popup').hide();
+            $('#continue-message').show();
+        } else {
+            correctAnswerGiven = false; // Set to false when an incorrect answer is given
+            feedbackMessage.addClass('incorrect-feedback').text('Try again!');
+            $('#hint-button').show();
+            $('.hint-popup').hide();
+        }
+    });
+
+    $('#hint-button').click(function () {
+        // Toggle hint visibility
+        if ($('.hint-popup').is(':hidden')) {
+            $('.hint-popup').text('Hint: Look towards the light for divine inspiration.');
+            $('.hint-popup').show();
+        } else {
+            $('.hint-popup').hide();
+        }
+    });
+
+    $('#quiz4button').click(function (e) {
+        if (!correctAnswerGiven) {
+            e.preventDefault();
+            $('#continue-message').hide(); /// Prevent moving to the next quiz if the correct answer hasn't been given
+            alert('Please select the correct answer before moving on!'); // Show an alert popup
+        }
+    });
 });
+
 </script>
+
 </body>
 </html>

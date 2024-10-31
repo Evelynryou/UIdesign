@@ -3,52 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz on Symbolism</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>Quiz 4 Crossword</title>
+<!-- Link to Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="../static/styles.css">
 <style>
-  /* Style for the hint popup */
-  .hint-popup {
-    display: none;
-    position: absolute;
-    background-color: #ffc;
-    border: 1px solid #cc9;
-    padding: 5px;
-    border-radius: 5px;
-    width: 200px;
-    top: 20px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
-  }
+    .main-container {
+        display: flex;
+        justify-content: space-between; /* Aligns children (quiz and crossword) side by side */
+        padding: 20px;
+    }
+    .quiz-container, .crossword-container {
+        flex: 1; /* Each container takes equal width */
+        padding: 10px;
+    }
+    .crossword-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 40px);
+        margin-left: 100px;
+    }
+    .crossword-input {
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        text-transform: uppercase;
+        border: 1px solid #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .empty-cell {
+        width: 40px;
+        height: 40px;
+        background-color: #e0e0e0;
+        border: none;
+    }
+    table {
+        border-collapse: collapse;
+    }
+    table td {
+        border: 1px solid #000;
+    }
+    .submit-button-container {
+    text-align: center; /* Centers the submit button */
+    margin-top: 10px; /* Adds space above the submit button */
+    margin-bottom: 10px;
+    width: 100%; /* Ensures the container takes full width if needed */
+    margin-left: 300px;
+    }
+
+ body {
+     padding-top: 70px;
+ }
+
+
 </style>
+
+
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html">Symbolism</a>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">Go to Homepage</a>
-      </li>
-    </ul>
+    <a class="navbar-brand" href="/">Symbolism</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-link active1" href="/detail-elements-of-arnolfini">Learn again</a>
+        <a class="nav-link active2" href="/">Home</a>
+      </div>
+    </div>
   </div>
 </nav>
+
+
+
+
 <div class="container my-5">
-  <h1>Symbolism Quiz 4</h1>
-  <div id="question">
-    <p>What does the convex mirror at the center back of the painting symbolize?</p>
-    <ul>
-      <li><button class="answer" data-correct="false">A) The future of the couple</button></li>
-      <li><button class="answer" data-correct="true">B) The presence of witnesses to the marriage</button></li>
-      <li><button class="answer" data-correct="false">C) The couple's vanity</button></li>
-      <li><button class="answer" data-correct="false">D) The artist's signature</button></li>
-    </ul>
-    <div id="feedback"></div>
-  </div>
+    <div class="jumbotron mt-5">
+    <h1>Quiz 4</h1>
+        <h4 style="margin-top: 30px">Dive into the enigmatic world of symbolism with this crossword puzzle, where every clue is a gateway to deeper meanings and artistic expressions.</h4>
 
-  <a href="/quiz3" class="btn btn-secondary" id="quiz3button">Previous</a>
+  <div class="main-container">
 
-    <a href="/quiz5" id="quiz5button" class="btn btn-primary">Next</a>
-  <div class="hint-popup" id="hint">Hint: Who else could be in the room, even if not directly visible?</div>
+    <div class="quiz-container">
+
+        <div class="clues">
+        <h4>Across</h4>
+        <h5>2. The animal that often a sign of loyalty and unconditional love</h5>
+        <h5>3. The color of the hue of fertility and new beginnings, found in the bride's attire</h5>
+        <h4>Down</h4>
+        <h5>1. Fruits names that symbol of wealth, often seen in paintings of this era</h5>
+      </div>
+    </div>
+
+    <div class="crossword-container">
+      <!-- Clues Section -->
+
+      <!-- Crossword Grid -->
+      <div class="crossword-grid">
+      <table>
+        <tr>
+            <td class="empty-cell"></td>
+            <td class="empty-cell"></td>
+            <td>
+              <div style="position: relative; width: 40px; height: 40px;">
+                <span style="position: absolute; top: 0; left: 5px; font-size: 0.75rem; color: #777;">1</span>
+                <input type="text" maxlength="1" class="crossword-input" id="1-across-1">
+              </div>
+            </td>
+            <td class="empty-cell"></td>
+            <td class="empty-cell"></td>
+        </tr>
+
+            <td class="empty-cell"></td>
+            <td class="empty-cell"></td>
+            <td><input type="text" maxlength="1" class="crossword-input" value="R" readonly id="1-across-2"></td>
+            <td class="empty-cell"></td>
+            <td class="empty-cell"></td>
+
+        <tr>
+            <td class="empty-cell"></td>
+            <td class="empty-cell"></td>
+            <td><input type="text" maxlength="1" class="crossword-input" value="A" readonly id="1-across-3"></td>
+            <td class="empty-cell"></td>
+            <td class="empty-cell"></td>
+        </tr>
+        <tr>
+            <td class="empty-cell"></td>
+            <td class="empty-cell"></td>
+            <td><input type="text" maxlength="1" class="crossword-input" id="1-across-4"></td>
+            <td class="empty-cell"></td>
+            <td class="empty-cell"></td>
+        </tr>
+        <tr>
+            <td>
+              <div style="position: relative; width: 40px; height: 40px;">
+                <span style="position: absolute; top: 0; left: 5px; font-size: 0.75rem; color: #777;">2</span>
+                <input type="text" maxlength="1" class="crossword-input" value="D" readonly id="2-across-1">
+              </div>
+            </td>
+            <td><input type="text" maxlength="1" class="crossword-input" id="2-across-2"></td>
+            <td><input type="text" maxlength="1" class="crossword-input" id="2-across-3"></td>
+            <td class="empty-cell"></td>
+            <td class="empty-cell"></td>
+        </tr>
+        <tr>
+            <td>
+              <div style="position: relative; width: 40px; height: 40px;">
+                <span style="position: absolute; top: 0; left: 5px; font-size: 0.75rem; color: #777;">3</span>
+                <input type="text" maxlength="1" class="crossword-input" id="3-across-1">
+              </div>
+            </td>
+            <td><input type="text" maxlength="1" class="crossword-input" id="3-across-2"></td>
+            <td><input type="text" maxlength="1" class="crossword-input" value="E" readonly id="3-across-3"></td>
+            <td><input type="text" maxlength="1" class="crossword-input" id="3-across-4"></td>
+            <td><input type="text" maxlength="1" class="crossword-input" value="N" readonly id="3-across-5"></td>
+        </tr>
+        <tr>
+            <td class="empty-cell"></td>
+            <td class="empty-cell"></td>
+            <td><input type="text" maxlength="1" class="crossword-input" id="1-across-5"></td>
+            <td class="empty-cell"></td>
+            <td class="empty-cell"></td>
+        </tr>
+      </table>
+    </div>
+
+</div>
+    </div>
+      <div class="submit-button-container">
+        <button id="submit-crossword" class="btn btn-success submit-button" onclick="checkCrossword()">Submit</button>
+
+     </div>
+    </div>
+<div id="result-message" class="alert mt-2" style="display: none;"></div>
+
+
+
+    <div class="d-flex justify-content-between mt-4">
+      <a href="/quiz3" class="btn btn-secondary" id="quiz3button">Previous</a>
+      <a href="/quiz5" id="quiz5button" class="btn btn-primary">Next</a>
+    </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="../static/scripts.js"></script>
+</body>
+</html>

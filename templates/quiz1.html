@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns="http://www.w3.org/1999/html">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz on Symbolism</title>
+<title>Image-Word Matching Quiz</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="../static/styles.css">
 <style>
-  /* Style for the hint popup */
-  .hint-popup {
-    display: none;
-    position: absolute;
-    background-color: #ffc;
-    border: 1px solid #cc9;
-    padding: 5px;
-    border-radius: 5px;
-    width: 200px;
-    top: 20px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
-  }
+ body {
+     padding-top: 70px;
+ }
+
+
+ li[draggable="true"] {
+   width: 250px; /* Set the width to 250px */
+ }
+ .alert-success {
+     background-color: rgba(40, 167, 69, 0.27); /* Bootstrap green color for success messages */
+ }
 </style>
 </head>
 
@@ -25,30 +25,140 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="/index">Symbolism</a>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/index">Go to Homepage</a>
-      </li>
-    </ul>
+    <a class="navbar-brand" href="/">Symbolism</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-link active1" href="/detail-elements-of-arnolfini">Learn again</a>
+        <a class="nav-link active2" href="/">Home</a>
+      </div>
+    </div>
   </div>
 </nav>
+
 <div class="container my-5">
-  <h1>Symbolism Quiz 1</h1>
-  <div id="question">
-    <p>What does the convex mirror at the center back of the painting symbolize?</p>
-    <ul>
-      <li><button class="answer" data-correct="false">A) The future of the couple</button></li>
-      <li><button class="answer" data-correct="true">B) The presence of witnesses to the marriage</button></li>
-      <li><button class="answer" data-correct="false">C) The couple's vanity</button></li>
-      <li><button class="answer" data-correct="false">D) The artist's signature</button></li>
-    </ul>
-    <div id="feedback"></div>
+  <div class="jumbotron mt-5">
+    <h1>Quiz 1</h1>
+    <h4 style="margin-top: 30px">Drag the correct meanings next to the images:</h4>
+    <div id="feedback-message"></div>
+    <div class="quiz-container">
+      <ul class="word-list row">
+        <li draggable="true" id="word2" data-connects-to="image2">Wealth and Abundance</li>
+        <li draggable="true" id="word1" data-connects-to="image1">Loyalty and Fidelity</li>
+        <li draggable="true" id="word3" data-connects-to="image3">Salvation and Divine presence</li>
+      </ul>
+      <ul class="image-list row">
+        <li class="droppable" id="image1"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Jan_van_Eyck_009.jpg/1280px-Jan_van_Eyck_009.jpg" alt="Apple"></li>
+        <li class="droppable" id="image2"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTslxHMlYRVCxnjqQUgBonfQE5PbRi8Z5IXw46C9F7Q6g&s" alt="Banana"></li>
+        <li class="droppable" id="image3"><img src="https://upload.wikimedia.org/wikipedia/commons/7/74/The_Arnolfini_Portrait%2C_détail_%282%29.jpg" alt="Orange"></li>
+      </ul>
+    </div>
+    <div id="score-display">Score: 0/3</div>
+    <div id="success-message" class="alert alert-success" style="display: none;">Now, let’s move on to the next challenge!</div>
+    <div class="d-flex justify-content-between mt-4">
+      <a href="/detail-elements-of-arnolfini" class="btn btn-primary" id="detail-elements-button">Learn again</a>
+      <a href="/quiz2" id="quiz2button" class="btn btn-primary" disabled>Next</a>
+    </div>
   </div>
-  <a href="/detail-elements-of-arnolfini" id="detail-elements-button" class="btn btn-primary">Previous</a>
-  <a href="/quiz2" id="quiz2button" class="btn btn-primary">Next</a>
-  <div class="hint-popup" id="hint">Hint: Who else could be in the room, even if not directly visible?</div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const words = document.querySelectorAll('.word-list li');
+  const dropZones = document.querySelectorAll('.droppable');
+  let correctCount = 0;
+  const totalWords = words.length;
+  const feedbackMessage = document.getElementById('feedback-message');
+  const nextButton = document.getElementById('quiz2button');
+
+  // Initially disable the 'Next' button.
+  nextButton.disabled = true;
+
+  // Set up drag events for draggable words.
+  words.forEach(word => {
+    word.addEventListener('dragstart', function(e) {
+      e.dataTransfer.setData('text/plain', this.id);
+    });
+  });
+
+  // Set up drop zones to accept words.
+  dropZones.forEach(zone => {
+    zone.addEventListener('dragover', function(e) {
+      e.preventDefault(); // Necessary to allow a drop.
+    });
+
+    zone.addEventListener('drop', function(e) {
+      e.preventDefault(); // Prevent default behavior (like opening a link).
+      const wordId = e.dataTransfer.getData('text');
+      const word = document.getElementById(wordId);
+      feedbackMessage.classList.remove('correct-feedback', 'incorrect-feedback');
+
+      if (word.dataset.connectsTo === this.id) {
+        if (!this.contains(word)) {
+          this.appendChild(word); // Append the word to the drop zone.
+          this.classList.add('correct');
+          this.classList.remove('incorrect');
+          correctCount++;
+          displayFeedbackMessage(correctCount, totalWords);
+          updateScore();
+        }
+      } else {
+        this.classList.add('incorrect');
+        feedbackMessage.textContent = 'Try again!';
+        feedbackMessage.classList.add('incorrect-feedback');
+      }
+    });
+  });
+
+  // Update the displayed score.
+  function updateScore() {
+    document.getElementById('score-display').textContent = `Score: ${correctCount}/${totalWords}`;
+  }
+
+  // Display feedback based on the number of correct matches.
+  function displayFeedbackMessage(correct, total) {
+    switch(correct) {
+      case 1:
+        feedbackMessage.textContent = 'Great job! Only 2 more to go!';
+        feedbackMessage.classList.add('correct-feedback');
+        break;
+      case 2:
+        feedbackMessage.textContent = 'Almost there! Just one more!';
+        feedbackMessage.classList.add('correct-feedback');
+        break;
+      case 3:
+        feedbackMessage.textContent = 'Congratulations! You got them all right!';
+        feedbackMessage.classList.add('correct-feedback');
+        document.getElementById('success-message').style.display = 'block'; // Show the success message
+        nextButton.disabled = false;
+        break;
+      default:
+        feedbackMessage.textContent = '';
+        feedbackMessage.classList.remove('correct-feedback', 'incorrect-feedback');
+        nextButton.disabled = true;
+        document.getElementById('success-message').style.display = 'none'; // Hide the success message when not all are correct
+    }
+  }
+
+  // Add a click listener to the 'Next' button to check quiz completion.
+  nextButton.addEventListener('click', function(e) {
+    if(correctCount < totalWords) {
+      e.preventDefault(); // Stop the button from navigating to the next page.
+      alert('Please complete the quiz before moving to the next challenge.');
+    }
+  });
+
+  // Enable the Next button if all words are correctly matched.
+  updateScore();
+});
+</script>
+
+
+</body>
+</html>
+
+</body>
+</html>
+
 
